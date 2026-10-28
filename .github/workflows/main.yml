@@ -336,12 +336,12 @@ jobs:
             SCHED_SUSFS="${{ inputs.use_susfs }}"
           fi
           if [ "$SCHED_SUSFS" = "true" ]; then
-            KERNELSU_COMMIT="$(pick "$PIN_KERNELSU" https://github.com/tiann/KernelSU.git refs/heads/main)"
+            KERNELSU_COMMIT="$(pick "$PIN_KERNELSU" https://github.com/backslashxx/KernelSU.git refs/heads/master)"
             BAKASU_COMMIT="$(pick "$PIN_BAKASU" https://github.com/Baka-SU/BakaSU.git refs/heads/main)"
             SUKISU_ULTRA_COMMIT="$(pick "$PIN_SUKISU_ULTRA" https://github.com/SukiSU-Ultra/SukiSU-Ultra.git refs/heads/builtin)"
             FINASU_COMMIT="$(pick "$PIN_FINASU" https://github.com/LyraVoid/FinaSU.git refs/heads/master)"
           else
-            KERNELSU_COMMIT="$(resolve_sha https://github.com/tiann/KernelSU.git refs/heads/main)"
+            KERNELSU_COMMIT="$(resolve_sha https://github.com/backslashxx/KernelSU.git refs/heads/master)"
             BAKASU_COMMIT="$(resolve_sha https://github.com/Baka-SU/BakaSU.git refs/heads/main)"
             SUKISU_ULTRA_COMMIT="$(resolve_sha https://github.com/SukiSU-Ultra/SukiSU-Ultra.git refs/heads/main)"
             FINASU_COMMIT="$(resolve_sha https://github.com/LyraVoid/FinaSU.git refs/heads/master)"
