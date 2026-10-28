@@ -150,7 +150,7 @@ runs:
             kernelsu)
               owner="tiann"; repo="KernelSU"; wf="build-manager.yml"
               branch="main"; want="manager"
-              resolve_stock "${INPUT_KSU_COMMIT:-}" kernelsu_commit https://github.com/tiann/KernelSU.git main
+              resolve_stock "${INPUT_KSU_COMMIT:-}" kernelsu_commit https://github.com/backslashxx/KernelSU.git main
               ;;
             bakasu)
               owner="Baka-SU"; repo="BakaSU"; wf="build-manager.yml"
