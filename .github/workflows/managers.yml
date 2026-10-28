@@ -27,7 +27,7 @@ on:
         type: string
         default: ""
       kernelsu_commit:
-        description: "Pin KernelSU manager to this commit (40-char SHA, empty = latest main tip)"
+        description: "Pin KernelSU manager to this commit (40-char SHA, empty = latest master tip)"
         required: false
         type: string
         default: ""
@@ -165,8 +165,8 @@ jobs:
             repo: https://github.com/pershoot/KernelSU-Next.git
             ref: dev-susfs
           - flavor: kernelsu
-            repo: https://github.com/tiann/KernelSU.git
-            ref: main
+            repo: https://github.com/backslashxx/KernelSU.git
+            ref: master
           - flavor: bakasu
             repo: https://github.com/Baka-SU/BakaSU.git
             ref: main
@@ -349,8 +349,8 @@ jobs:
             repo: https://github.com/KernelSU-Next/KernelSU-Next.git
             ref: dev
           - flavor: kernelsu
-            repo: https://github.com/tiann/KernelSU.git
-            ref: main
+            repo: https://github.com/backslashxx/KernelSU.git
+            ref: master
           - flavor: bakasu
             repo: https://github.com/Baka-SU/BakaSU.git
             ref: main
