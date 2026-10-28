@@ -22,7 +22,7 @@ inputs:
     required: false
     default: ''
   kernelsu_commit:
-    description: 'tiann/KernelSU commit to match (empty = resolve the main tip)'
+    description: 'tiann/KernelSU commit to match (empty = resolve the master tip)'
     required: false
     default: ''
   bakasu_commit:
