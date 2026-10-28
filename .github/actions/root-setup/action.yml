@@ -21,7 +21,7 @@ runs:
         expected_commit="${{ inputs.commit }}"
         case "$flavor" in
           kernelsu)
-            repo="https://github.com/tiann/KernelSU.git"
+            repo="https://github.com/backslashxx/KernelSU.git"
             directory="KernelSU"
             manager="KernelSU Manager"
             ;;
