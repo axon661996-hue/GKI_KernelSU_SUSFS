@@ -77,7 +77,7 @@ on:
           - FinaSU
           - No Root
           - All (KernelSU-Next + KernelSU + BakaSU)
-        default: All (KernelSU-Next + KernelSU + BakaSU)
+        default: KernelSU
       use_susfs:
         description: "SUSFS"
         type: boolean
@@ -336,7 +336,10 @@ jobs:
             SCHED_SUSFS="${{ inputs.use_susfs }}"
           fi
           if [ "$SCHED_SUSFS" = "true" ]; then
-            KERNELSU_COMMIT="$(pick "$PIN_KERNELSU" https://github.com/backslashxx/KernelSU.git refs/heads/master)"
+            # The current SUSFS 10_enable patch does not apply to the v3.3.1+
+            # KernelSU layout. Keep this flavor on the audited compatible pin
+            # whenever SUSFS is enabled, even in latest/update modes.
+            KERNELSU_COMMIT="$PIN_KERNELSU"
             BAKASU_COMMIT="$(pick "$PIN_BAKASU" https://github.com/Baka-SU/BakaSU.git refs/heads/main)"
             SUKISU_ULTRA_COMMIT="$(pick "$PIN_SUKISU_ULTRA" https://github.com/SukiSU-Ultra/SukiSU-Ultra.git refs/heads/builtin)"
             FINASU_COMMIT="$(pick "$PIN_FINASU" https://github.com/LyraVoid/FinaSU.git refs/heads/master)"

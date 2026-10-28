@@ -17,9 +17,13 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Setup Kernel Configs
-      if: false
+    - name: Enable Full LTO Kernel Config
       uses: ./.github/actions/set-kernel-config
+      with:
+        config_list: |
+          CONFIG_LTO_CLANG=y
+          CONFIG_LTO_CLANG_FULL=y
+          CONFIG_LTO_CLANG_THIN=n
 
     # - name: Provide host ld from repo prebuilts
     #   shell: bash

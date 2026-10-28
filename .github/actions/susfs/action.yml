@@ -25,7 +25,7 @@ inputs:
     description: 'Kernel sublevel'
     required: true
   root_flavor:
-    description: 'Selected root implementation (kernelsu / next / bakasu / sukisu-ultra). KernelSU (tiann main) needs the 10_enable_susfs_for_ksu patch; other flavors already ship SUSFS.'
+    description: 'Selected root implementation (kernelsu / next / bakasu / sukisu-ultra). The backslashxx/KernelSU flavor uses the 10_enable_susfs_for_ksu patch; other flavors already ship SUSFS.'
     required: false
     default: ""
 outputs:
@@ -64,9 +64,9 @@ runs:
         version: ${{ inputs.version }}
         root_flavor: ${{ inputs.root_flavor }}
 
-    - name: Enable SUSFS for KernelSU (tiann)
-      # tiann/KernelSU main does NOT carry SUSFS, so for the kernelsu flavor we
-      # apply the enable patch from susfs4ksu onto the KernelSU checkout.
+    - name: Enable SUSFS for KernelSU (backslashxx)
+      # backslashxx/KernelSU does NOT carry SUSFS integration, so apply the
+      # enable patch from susfs4ksu onto the KernelSU checkout.
       # pershoot dev-susfs (next) and BakaSU already include SUSFS, so this is
       # a no-op for those flavors.
       if: inputs.enabled == 'true' && inputs.root_flavor == 'kernelsu'
@@ -79,8 +79,8 @@ runs:
           echo "Missing 10_enable_susfs_for_ksu.patch at $PATCH" >&2
           exit 1
         fi
-        echo "Applying SUSFS enable patch to KernelSU (tiann) checkout (kernel/KernelSU/kernel)"
-        patch -p1 < "$PATCH"
+        echo "Applying SUSFS enable patch to backslashxx/KernelSU checkout (kernel/KernelSU/kernel)"
+        patch --batch --forward -p1 < "$PATCH"
 
     - name: Enable SUSFS for FinaSU (LyraVoid)
       # FinaSU (plain tiann-layout fork) carries no susfs integration of its

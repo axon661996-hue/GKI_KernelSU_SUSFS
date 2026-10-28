@@ -53,7 +53,7 @@ The **OS patch level** field accepts one of the following:
 The matrix files under [`.github/config/`](../.github/config/) are the source of truth for available dates and sublevels. To guarantee one matrix row, select a unique patch date or `lts`; if you use a numeric sublevel, check the config first to confirm it occurs only once.
 
 > [!WARNING]
-> Do not leave **Kernel Version**, **OS patch level**, and **Root Flavor** set to `All` for a first test. Those defaults fan out across every exposed family, every matching matrix row, and all three root implementations, potentially creating hundreds of kernel jobs.
+> Do not leave **Kernel Version** and **OS patch level** set to `All` for a first test. Those selections fan out across every exposed family and matching matrix row, potentially creating hundreds of kernel jobs. **Root Flavor** defaults to `KernelSU`; choose `All` only when you intend to build all three standard root implementations.
 
 ## 3. Run One Build in the GitHub UI
 
@@ -73,12 +73,12 @@ Recommended settings for a first build:
 | Kernel Version | One exact family | Prevents an all-family fan-out. |
 | OS patch level | One unique date or `lts` | Selects one matrix row. A numeric sublevel can match multiple dates. |
 | Kernel Branding | Your short brand name | Changes the kernel's local version string. |
-| Commit mode | `verified` | Uses the project's verified component pins where pins are supported. |
-| Root Flavor | One implementation | Produces one kernel instead of KernelSU-Next, KernelSU, and BakaSU builds. `SukiSU-Ultra`, `KowSU`, `FinaSU`, and `No Root` are opt-in only and are not part of `All`. `KowSU` cannot be combined with SUSFS; `FinaSU` requires SUSFS. |
+| Commit mode | `verified` | Uses audited component pins. KernelSU remains on its SUSFS-compatible pin whenever SUSFS is enabled, including `latest` and `update` modes. |
+| Root Flavor | `KernelSU` (default) | Uses the KernelSU implementation from `backslashxx/KernelSU`. Select `All` for KernelSU-Next, KernelSU, and BakaSU builds. `SukiSU-Ultra`, `KowSU`, `FinaSU`, and `No Root` are opt-in only and are not part of `All`. `KowSU` cannot be combined with SUSFS; `FinaSU` requires SUSFS. |
 | Feature toggles | Keep the defaults initially | Establishes a known baseline before customizing features. |
 | Test release notes | `false` | `true` skips the kernel builds and only previews release notes. |
 
-Root Flavor choices are `KernelSU-Next`, `KernelSU`, `BakaSU`, `SukiSU-Ultra`, `KowSU`, `FinaSU`, `No Root`, or `All`. `All` builds only KernelSU-Next, KernelSU, and BakaSU. `KowSU` always tracks the latest `master` tip and errors out if SUSFS is enabled. `FinaSU` is pinned in verified mode and errors out if SUSFS is disabled (its kernel hard-depends on the susfs headers). `No Root` produces a kernel with no root implementation (and no manager APK). Install the matching manager after flashing a rooted build; see [Post-install Setup](post-install.md).
+Root Flavor choices are `KernelSU-Next`, `KernelSU`, `BakaSU`, `SukiSU-Ultra`, `KowSU`, `FinaSU`, `No Root`, or `All`; `KernelSU` is the default. `All` builds only KernelSU-Next, KernelSU, and BakaSU. `KowSU` always tracks the latest `master` tip and errors out if SUSFS is enabled. `FinaSU` is pinned in verified mode and errors out if SUSFS is disabled (its kernel hard-depends on the susfs headers). `No Root` produces a kernel with no root implementation (and no manager APK). Install the matching manager after flashing a rooted build; see [Post-install Setup](post-install.md).
 
 ### Example: Current Android 15 / Linux 6.6 LTS
 
