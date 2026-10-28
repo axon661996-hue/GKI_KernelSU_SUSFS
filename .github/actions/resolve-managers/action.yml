@@ -148,7 +148,7 @@ runs:
               fi
               ;;
             kernelsu)
-              owner="tiann"; repo="KernelSU"; wf="build-manager.yml"
+              owner="backslashxx"; repo="KernelSU"; wf="build-manager.yml"
               branch="master"; want="manager"
               resolve_stock "${INPUT_KSU_COMMIT:-}" kernelsu_commit https://github.com/backslashxx/KernelSU.git master
               ;;
